@@ -191,7 +191,7 @@ class _LoginState extends State<Login> {
                               height: 200,
                               fit: BoxFit.contain,
                               image: AssetImage(
-                                'assets/images/Logo-Siello-e1620133040969.png',
+                                'assets/Logo-Siello-e1620133040969.png',
                               ),
                             ),
                             Container(
@@ -362,6 +362,16 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 15,
                   ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          margin: const EdgeInsets.only(left: 20),
+                          child: const Text(
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: Color.fromARGB(255, 100, 100, 100),
+                              ),
+                              "PDF_Sync_Hub -- Version 1.0")))
                 ]))));
   }
 

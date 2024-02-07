@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pagina_login/Login.dart';
 import 'package:http/http.dart' as http;
@@ -412,208 +413,217 @@ class _HomeAppState extends State<HomeApp> {
         ),
       ),
       body: Center(
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          color: hexToColor("#adcb48"),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              Expanded(
-                child: Container(
-                  width: 900,
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 46, 46, 46)
-                            .withOpacity(0.4), // Cor da sombra
-                        spreadRadius: 5, // Quão longe a sombra se espalha
-                        blurRadius: 7, // O quão desfocada é a sombra
-                        offset: const Offset(
-                            1, 2), // A posição da sombra (horizontal, vertical)
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  right: BorderSide(
-                                      color: Colors.black, width: 0.1))),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Column(children: [
-                                    Container(
-                                      margin: const EdgeInsets.all(15),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor: Colors.white,
-                                          backgroundColor: hexToColor(
-                                              "#adcb48"), // Cor do texto do botão
-                                          padding: const EdgeInsets.all(
-                                              40), // Espaçamento interno do botão
-                                          textStyle: const TextStyle(
-                                            fontSize:
-                                                18.0, // Tamanho do texto do botão
+          child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: hexToColor("#adcb48"),
+              child: Column(children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                Expanded(
+                  child: Container(
+                    width: 900,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.all(0),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 46, 46, 46)
+                              .withOpacity(0.4), // Cor da sombra
+                          spreadRadius: 5, // Quão longe a sombra se espalha
+                          blurRadius: 7, // O quão desfocada é a sombra
+                          offset: const Offset(1,
+                              2), // A posição da sombra (horizontal, vertical)
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        color: Colors.black, width: 0.1))),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    child: Column(children: [
+                                      Container(
+                                        margin: const EdgeInsets.all(15),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.white,
+                                            backgroundColor: hexToColor(
+                                                "#adcb48"), // Cor do texto do botão
+                                            padding: const EdgeInsets.all(
+                                                40), // Espaçamento interno do botão
+                                            textStyle: const TextStyle(
+                                              fontSize:
+                                                  18.0, // Tamanho do texto do botão
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(
+                                                  13.0), // Borda arredondada do botão
+                                            ),
+                                            elevation: 4.0, // Elevação do botão
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                13.0), // Borda arredondada do botão
-                                          ),
-                                          elevation: 4.0, // Elevação do botão
+                                          onPressed: () async {
+                                            setState(() {
+                                              loading =
+                                                  true; // Ativar o indicador de carregamento
+                                            });
+
+                                            await uploadPDFglobal.uploadPDF();
+
+                                            setState(() {
+                                              loading =
+                                                  false; // Desativar o indicador de carregamento
+                                            });
+                                          }, // Call the function directly
+                                          child: const Text("Carregar PDF"),
                                         ),
-                                        onPressed: () async {
-                                          setState(() {
-                                            loading =
-                                                true; // Ativar o indicador de carregamento
-                                          });
-
-                                          await uploadPDFglobal.uploadPDF();
-
-                                          setState(() {
-                                            loading =
-                                                false; // Desativar o indicador de carregamento
-                                          });
-                                        }, // Call the function directly
-                                        child: const Text("Carregar PDF"),
                                       ),
-                                    ),
-                                    AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      // Ajuste a duração conforme necessário
-                                      height: loading ? 15 : 5,
-                                      curve: Curves
-                                          .easeInOut, // Use um Curve para um movimento suave
-                                    ),
-                                    if (loading)
                                       AnimatedContainer(
                                         duration:
-                                            const Duration(milliseconds: 200),
-                                        height: loading ? 35 : 0,
-                                        child: CircularProgressIndicator(
-                                          color: hexToColor('#adcb48'),
-                                        ),
-                                      ), // Indicador de carregamento
+                                            const Duration(milliseconds: 500),
+                                        // Ajuste a duração conforme necessário
+                                        height: loading ? 15 : 5,
+                                        curve: Curves
+                                            .easeInOut, // Use um Curve para um movimento suave
+                                      ),
+                                      if (loading)
+                                        AnimatedContainer(
+                                          duration:
+                                              const Duration(milliseconds: 200),
+                                          height: loading ? 35 : 0,
+                                          child: CircularProgressIndicator(
+                                            color: hexToColor('#adcb48'),
+                                          ),
+                                        ), // Indicador de carregamento
 
-                                    AnimatedContainer(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      height: loading ? 15 : 5,
-                                      curve: Curves.easeInOut,
-                                    ),
-                                    Container(
-                                      width: 210,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              35, 158, 158, 158),
-                                          border: Border.all(
-                                            color: hexToColor("#adcb48"),
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(children: [
-                                        Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
-                                            children: [
-                                              Container(
-                                                margin: const EdgeInsets.only(
-                                                    right: 6),
-                                                child: const Icon(
-                                                  Icons.warning_amber_outlined,
-                                                  color: Colors.green,
-                                                  size: 25.0,
+                                      AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        height: loading ? 15 : 5,
+                                        curve: Curves.easeInOut,
+                                      ),
+                                      Container(
+                                        width: 210,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                35, 158, 158, 158),
+                                            border: Border.all(
+                                              color: hexToColor("#adcb48"),
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(children: [
+                                          Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      right: 6),
+                                                  child: const Icon(
+                                                    Icons
+                                                        .warning_amber_outlined,
+                                                    color: Colors.green,
+                                                    size: 25.0,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                "O nome do arquivo PDF ",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: hexToColor("#03605A"),
-                                                  fontWeight: FontWeight.w900,
-                                                  fontFamily: 'bornamerdium',
+                                                Text(
+                                                  "O nome do arquivo PDF ",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color:
+                                                        hexToColor("#03605A"),
+                                                    fontWeight: FontWeight.w900,
+                                                    fontFamily: 'bornamerdium',
+                                                  ),
                                                 ),
-                                              ),
-                                            ]),
-                                        Text(
-                                          "deve ser o numero do chassi do veiculo",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: hexToColor("#03605A"),
-                                            fontWeight: FontWeight.w900,
-                                            fontFamily: 'bornamerdium',
-                                          ),
-                                        ),
-                                      ]),
-                                    ),
-                                  ]),
-                                ),
-                              ]),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment
-                                  .center, // Alinha os itens no eixo principal (verticalmente)
-                              crossAxisAlignment: CrossAxisAlignment
-                                  .center, // Alinha os itens no eixo cruzado (horizontalmente)
-                              children: [
-                                Container(
-                                  width: 300,
-                                  height: 450,
-                                  margin: const EdgeInsets.all(15),
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center, // Alinha os itens verticalmente no centro
-                                      crossAxisAlignment: CrossAxisAlignment
-                                          .center, // Alinha os itens horizontalmente no centro
-                                      children: [
-                                        SizedBox(
-                                          width: double.infinity,
-                                          child: Text(
-                                            "PDFs adicionados",
-                                            textAlign: TextAlign.center,
+                                              ]),
+                                          Text(
+                                            "deve ser o numero do chassi do veiculo",
                                             style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 12,
                                               color: hexToColor("#03605A"),
                                               fontWeight: FontWeight.w900,
                                               fontFamily: 'bornamerdium',
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          child: PDFList(key: pdfListKey),
-                                        ),
-                                      ]),
-                                ),
-                              ]),
+                                        ]),
+                                      ),
+                                    ]),
+                                  ),
+                                ]),
+                          ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Container(
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // Alinha os itens no eixo principal (verticalmente)
+                                  crossAxisAlignment: CrossAxisAlignment
+                                      .center, // Alinha os itens no eixo cruzado (horizontalmente)
+                                  children: [
+                                    Container(
+                                      width: 300,
+                                      margin: const EdgeInsets.all(15),
+                                      child: Column(
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center, // Alinha os itens verticalmente no centro
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .center, // Alinha os itens horizontalmente no centro
+                                          children: [
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: Text(
+                                                "PDFs adicionados",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: hexToColor("#03605A"),
+                                                  fontWeight: FontWeight.w900,
+                                                  fontFamily: 'bornamerdium',
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              child: PDFList(key: pdfListKey),
+                                            ),
+                                          ]),
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 70,
-              ),
-            ],
-          ),
-        ),
-      ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                        margin: const EdgeInsets.only(left: 20),
+                        child: const Text(
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Color.fromARGB(255, 100, 100, 100),
+                            ),
+                            "PDF_Sync_Hub -- Version 1.0")))
+              ]))),
     );
   }
 }
