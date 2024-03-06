@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_application_1/pagina_login/HomeApp.dart';
+import 'package:CNR_PDF_SYNC/pagina_login/HomeApp.dart';
 
 Color hexToColor(String code) {
   return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);

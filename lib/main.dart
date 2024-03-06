@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pagina_login/Login.dart';
+import 'package:CNR_PDF_SYNC/pagina_login/Login.dart';
 
 void main() {
   runApp(const MyApp());
