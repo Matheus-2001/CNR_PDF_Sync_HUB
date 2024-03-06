@@ -91,50 +91,6 @@ class _LoginState extends State<Login> {
     }
   }
 
-  void _simulateFormSubmission() {
-    // Exibir uma mensagem na tela
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior:
-            SnackBarBehavior.floating, // Define o comportamento como flutuante
-        margin: const EdgeInsets.only(
-            bottom: 710), // Ajuste a margem conforme necessário
-        showCloseIcon: true,
-        closeIconColor: Colors.white,
-        backgroundColor: Colors.red,
-        content: Row(children: [
-          Column(children: [
-            Container(
-                margin: const EdgeInsets.all(10),
-                child: const Icon(
-                  Icons.task_alt,
-                  size: 25,
-                  color: Colors.white,
-                ))
-          ]),
-          const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              "Informe o Email para recuperação",
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'bornamedium',
-                fontSize: 15,
-              ),
-            ),
-            Text(
-              "da senha",
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'bornamedium',
-                fontSize: 15,
-              ),
-            ),
-          ]),
-        ]),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,7 +104,16 @@ class _LoginState extends State<Login> {
             child: Container(
                 height: double.infinity,
                 width: double.infinity,
-                color: hexToColor("#adcb48"),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      hexToColor("#22408d"),
+                      hexToColor("#303b60"),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
                 child: Column(children: [
                   const SizedBox(
                     height: 15,
@@ -191,7 +156,7 @@ class _LoginState extends State<Login> {
                               height: 200,
                               fit: BoxFit.contain,
                               image: AssetImage(
-                                'assets/Logo-Siello-e1620133040969.png',
+                                'assets/logo_cnr_01.png',
                               ),
                             ),
                             Container(
@@ -308,7 +273,7 @@ class _LoginState extends State<Login> {
                                   duration: const Duration(milliseconds: 200),
                                   height: loading ? 35 : 0,
                                   child: CircularProgressIndicator(
-                                    color: hexToColor('#adcb48'),
+                                    color: hexToColor('#22408d'),
                                   ),
                                 ),
 
@@ -337,14 +302,14 @@ class _LoginState extends State<Login> {
                                   width: 100,
                                   height: 40,
                                   decoration: BoxDecoration(
-                                      color: hexToColor('#adcb48'),
+                                      color: hexToColor('#22408d'),
                                       borderRadius: BorderRadius.circular(5)),
                                   child: const Center(
                                     child: Text(
                                       "Entrar",
                                       style: TextStyle(
                                         fontSize: 14,
-                                        color: Colors.black,
+                                        color: Colors.white,
                                         fontWeight: FontWeight.w600,
                                         fontFamily: 'bornamedium',
                                       ),

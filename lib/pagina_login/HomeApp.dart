@@ -1,12 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/pagina_login/Login.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -398,14 +393,14 @@ class _HomeAppState extends State<HomeApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: hexToColor("#adcb48"),
+        backgroundColor: hexToColor("#22408d"),
         title: Center(
           child: Text(
             "Envio de Imagem do contrato ",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 35,
-              color: hexToColor('#065f5a'),
+              color: Colors.white,
               fontWeight: FontWeight.w900,
               fontFamily: 'bornamerdium',
             ),
@@ -416,7 +411,16 @@ class _HomeAppState extends State<HomeApp> {
           child: Container(
               height: double.infinity,
               width: double.infinity,
-              color: hexToColor("#adcb48"),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    hexToColor("#22408d"),
+                    hexToColor("#303b60"),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
               child: Column(children: [
                 const SizedBox(
                   height: 30,
@@ -459,7 +463,7 @@ class _HomeAppState extends State<HomeApp> {
                                           style: ElevatedButton.styleFrom(
                                             foregroundColor: Colors.white,
                                             backgroundColor: hexToColor(
-                                                "#adcb48"), // Cor do texto do botão
+                                                "#22408d"), // Cor do texto do botão
                                             padding: const EdgeInsets.all(
                                                 40), // Espaçamento interno do botão
                                             textStyle: const TextStyle(
@@ -502,7 +506,7 @@ class _HomeAppState extends State<HomeApp> {
                                               const Duration(milliseconds: 200),
                                           height: loading ? 35 : 0,
                                           child: CircularProgressIndicator(
-                                            color: hexToColor('#adcb48'),
+                                            color: hexToColor('#22408d'),
                                           ),
                                         ), // Indicador de carregamento
 
@@ -519,7 +523,7 @@ class _HomeAppState extends State<HomeApp> {
                                             color: const Color.fromARGB(
                                                 35, 158, 158, 158),
                                             border: Border.all(
-                                              color: hexToColor("#adcb48"),
+                                              color: hexToColor("#22408d"),
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(10)),
@@ -531,10 +535,11 @@ class _HomeAppState extends State<HomeApp> {
                                                 Container(
                                                   margin: const EdgeInsets.only(
                                                       right: 6),
-                                                  child: const Icon(
+                                                  child: Icon(
                                                     Icons
                                                         .warning_amber_outlined,
-                                                    color: Colors.green,
+                                                    color:
+                                                        hexToColor("#22408d"),
                                                     size: 25.0,
                                                   ),
                                                 ),
@@ -544,7 +549,7 @@ class _HomeAppState extends State<HomeApp> {
                                                   style: TextStyle(
                                                     fontSize: 12,
                                                     color:
-                                                        hexToColor("#03605A"),
+                                                        hexToColor("#303b60"),
                                                     fontWeight: FontWeight.w900,
                                                     fontFamily: 'bornamerdium',
                                                   ),
@@ -554,7 +559,7 @@ class _HomeAppState extends State<HomeApp> {
                                             "deve ser o numero do chassi do veiculo",
                                             style: TextStyle(
                                               fontSize: 12,
-                                              color: hexToColor("#03605A"),
+                                              color: hexToColor("#303b60"),
                                               fontWeight: FontWeight.w900,
                                               fontFamily: 'bornamerdium',
                                             ),
@@ -591,7 +596,7 @@ class _HomeAppState extends State<HomeApp> {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontSize: 20,
-                                                  color: hexToColor("#03605A"),
+                                                  color: hexToColor("#303b60"),
                                                   fontWeight: FontWeight.w900,
                                                   fontFamily: 'bornamerdium',
                                                 ),
